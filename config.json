@@ -1,0 +1,6 @@
+{
+    "PORT":"4000",
+    "HOST":"http://192.168.0.103:4000",
+    "MOVIES_DIR":"movies",
+    "SRT_DIR":"rsc/srt"
+}
