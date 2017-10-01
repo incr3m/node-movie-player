@@ -23,6 +23,12 @@ router.get('/watch/subtitles/:id', function (req, res) {
   });
 });
 
+const styles = () => `
+  body Button{
+    font-size: xx-large;
+  }
+`
+
 router.get('/watch/:id', function (req, res) {
     
     search(req.params.id).then(movie=>{
@@ -43,7 +49,12 @@ router.get('/watch/:id', function (req, res) {
           
           <link href="http://vjs.zencdn.net/6.2.7/video-js.css" rel="stylesheet">
           <script src="http://vjs.zencdn.net/ie8/1.1.2/videojs-ie8.min.js"></script>
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+          
           <title>React App</title>
+          <style>
+            ${styles()}
+          </style>
         </head>
         <body>
           <noscript>
@@ -61,7 +72,17 @@ router.get('/watch/:id', function (req, res) {
             </p>
             <track kind="captions" src="${HOST}/watch/subtitles/${movie.name}" srclang="en" label="English" default>
           </video>
+          <br/>
+          <a href="${HOST}"><Button>Back</Button></a>
+          <Button id="play-full-screen">Play Full Screen</Button>
           <script src="http://vjs.zencdn.net/6.2.7/video.js"></script>
+          <script type="text/javascript">
+            $('#play-full-screen').click(function(e) {
+                e.preventDefault();
+                $('.vjs-play-control').click();
+                $('.vjs-fullscreen-control').click();
+            });
+          </script>
         </body>
       </html>
       
